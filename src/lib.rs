@@ -69,7 +69,7 @@
     unused_import_braces,
     unused_qualifications
 )]
-#![allow(intra_doc_link_resolution_failure)]
+#![allow(broken_intra_doc_links)]
 
 #[macro_use]
 extern crate log;
