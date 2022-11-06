@@ -282,9 +282,9 @@ impl<H: HttpSend> MastodonClient<H> for Mastodon<H> {
         let status = response.status();
 
         if status.is_client_error() {
-            return Err(Error::Client(status.clone()));
+            return Err(Error::Client(status));
         } else if status.is_server_error() {
-            return Err(Error::Server(status.clone()));
+            return Err(Error::Server(status));
         }
 
         deserialise(response)
@@ -298,9 +298,9 @@ impl<H: HttpSend> MastodonClient<H> for Mastodon<H> {
         let status = response.status();
 
         if status.is_client_error() {
-            return Err(Error::Client(status.clone()));
+            return Err(Error::Client(status));
         } else if status.is_server_error() {
-            return Err(Error::Server(status.clone()));
+            return Err(Error::Server(status));
         }
 
         deserialise(response)
@@ -314,9 +314,9 @@ impl<H: HttpSend> MastodonClient<H> for Mastodon<H> {
         let status = response.status();
 
         if status.is_client_error() {
-            return Err(Error::Client(status.clone()));
+            return Err(Error::Client(status));
         } else if status.is_server_error() {
-            return Err(Error::Server(status.clone()));
+            return Err(Error::Server(status));
         }
 
         deserialise(response)
