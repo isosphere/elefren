@@ -305,8 +305,7 @@ impl<H: HttpSend> Registered<H> {
         let scopes: String = utf8_percent_encode(&scopes, DEFAULT_ENCODE_SET).collect();
         let url = if self.force_login {
             format!(
-                "{}/oauth/authorize?client_id={}&redirect_uri={}&scope={}&force_login=true&\
-                 response_type=code",
+                "{}/oauth/authorize?client_id={}&redirect_uri={}&scope={}&force_login=true&response_type=code",
                 self.base, self.client_id, self.redirect, scopes,
             )
         } else {

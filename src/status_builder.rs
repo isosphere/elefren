@@ -241,10 +241,10 @@ impl StatusBuilder {
             status: self.status.clone(),
             in_reply_to_id: self.in_reply_to_id.clone(),
             media_ids: self.media_ids.clone(),
-            sensitive: self.sensitive.clone(),
+            sensitive: self.sensitive,
             spoiler_text: self.spoiler_text.clone(),
-            visibility: self.visibility.clone(),
-            language: self.language.clone(),
+            visibility: self.visibility,
+            language: self.language,
             content_type: self.content_type.clone(),
         })
     }
@@ -272,7 +272,7 @@ pub struct NewStatus {
 }
 
 /// The visibility of a status.
-#[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
 pub enum Visibility {
     /// A Direct message to a user

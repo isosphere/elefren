@@ -123,7 +123,7 @@ macro_rules! route_v2 {
 
                 let qs_data = Data {
                     $(
-                            $param: $param,
+                        $param: $param,
                     )*
                     _marker: ::std::marker::PhantomData,
                 };
@@ -156,7 +156,7 @@ macro_rules! route {
                 let form_data = Form::new()
                     $(
                         .file(stringify!($param), $param.as_ref())?
-                     )*;
+                    )*;
 
                 let response = self.send(
                         self.client
@@ -200,7 +200,7 @@ macro_rules! route {
 
                 let qs_data = Data {
                     $(
-                            $param: $param,
+                        $param: $param,
                     )*
                     _marker: ::std::marker::PhantomData,
                 };
