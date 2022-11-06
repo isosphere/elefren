@@ -16,7 +16,7 @@ pub trait HttpSend: Clone + Debug {
 }
 
 #[doc(hidden)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct HttpSender;
 
 impl HttpSend for HttpSender {

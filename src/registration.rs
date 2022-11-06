@@ -13,7 +13,7 @@ use Mastodon;
 use MastodonBuilder;
 use Result;
 
-const DEFAULT_REDIRECT_URI: &'static str = "urn:ietf:wg:oauth:2.0:oob";
+const DEFAULT_REDIRECT_URI: &str = "urn:ietf:wg:oauth:2.0:oob";
 
 /// Handles registering your mastodon app to your instance. It is recommended
 /// you cache your data struct to avoid registering on every run.
@@ -110,7 +110,7 @@ impl<'a, H: HttpSend> Registration<'a, H> {
     }
 
     fn send(&self, req: RequestBuilder) -> Result<Response> {
-        Ok(self.http_sender.send(&self.client, req)?)
+        self.http_sender.send(&self.client, req)
     }
 
     /// Register the given application
@@ -247,7 +247,7 @@ impl Registered<HttpSender> {
 
 impl<H: HttpSend> Registered<H> {
     fn send(&self, req: RequestBuilder) -> Result<Response> {
-        Ok(self.http_sender.send(&self.client, req)?)
+        self.http_sender.send(&self.client, req)
     }
 
     /// Returns the parts of the `Registered` struct that can be used to
@@ -323,8 +323,7 @@ impl<H: HttpSend> Registered<H> {
     /// provided by the authorisation url.
     pub fn complete(&self, code: &str) -> Result<Mastodon<H>> {
         let url = format!(
-            "{}/oauth/token?client_id={}&client_secret={}&code={}&grant_type=authorization_code&\
-             redirect_uri={}",
+            "{}/oauth/token?client_id={}&client_secret={}&code={}&grant_type=authorization_code&redirect_uri={}",
             self.base, self.client_id, self.client_secret, code, self.redirect
         );
 
@@ -340,7 +339,7 @@ impl<H: HttpSend> Registered<H> {
 
         let mut builder = MastodonBuilder::new(self.http_sender.clone());
         builder.client(self.client.clone()).data(data);
-        Ok(builder.build()?)
+        builder.build()
     }
 }
 

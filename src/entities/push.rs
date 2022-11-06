@@ -1,5 +1,5 @@
 /// Represents the `alerts` key of the `Subscription` object
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 pub struct Alerts {
     /// flag for follow alerts
     pub follow: Option<bool>,
@@ -12,7 +12,7 @@ pub struct Alerts {
 }
 
 /// Represents a new Push subscription
-#[derive(Debug, Clone, PartialEq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct Subscription {
     /// The `id` of the subscription
     pub id: String,

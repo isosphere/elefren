@@ -69,7 +69,7 @@
     unused_import_braces,
     unused_qualifications
 )]
-#![allow(broken_intra_doc_links)]
+#![allow(rustdoc::broken_intra_doc_links)]
 
 #[macro_use]
 extern crate log;
@@ -186,9 +186,9 @@ impl<H: HttpSend> Mastodon<H> {
     }
 
     pub(crate) fn send(&self, req: RequestBuilder) -> Result<Response> {
-        Ok(self
+        self
             .http_sender
-            .send(&self.client, req.bearer_auth(&self.token))?)
+            .send(&self.client, req.bearer_auth(&self.token))
     }
 }
 
@@ -410,11 +410,11 @@ impl<H: HttpSend> MastodonClient<H> for Mastodon<H> {
 
         if ids.len() == 1 {
             url += "id=";
-            url += &ids[0];
+            url += ids[0];
         } else {
             for id in ids {
                 url += "id[]=";
-                url += &id;
+                url += id;
                 url += "&";
             }
             url.pop();
@@ -453,13 +453,13 @@ impl<H: HttpSend> MastodonClient<H> for Mastodon<H> {
     /// Get all accounts that follow the authenticated user
     fn follows_me(&self) -> Result<Page<Account, H>> {
         let me = self.verify_credentials()?;
-        Ok(self.followers(&me.id)?)
+        self.followers(&me.id)
     }
 
     /// Get all accounts that the authenticated user follows
     fn followed_by_me(&self) -> Result<Page<Account, H>> {
         let me = self.verify_credentials()?;
-        Ok(self.following(&me.id)?)
+        self.following(&me.id)
     }
 
     /// returns events that are relevant to the authorized user, i.e. home
@@ -663,7 +663,7 @@ impl<R: EventStream> Iterator for EventReader<R> {
         loop {
             if let Ok(line) = self.0.read_message() {
                 let line = line.trim().to_string();
-                if line.starts_with(":") || line.is_empty() {
+                if line.starts_with(':') || line.is_empty() {
                     continue;
                 }
                 lines.push(line);
@@ -760,7 +760,7 @@ impl<H: HttpSend> MastodonBuilder<H> {
     pub fn build(self) -> Result<Mastodon<H>> {
         Ok(if let Some(data) = self.data {
             Mastodon {
-                client: self.client.unwrap_or_else(|| Client::new()),
+                client: self.client.unwrap_or_else(Client::new),
                 http_sender: self.http_sender,
                 data,
             }
@@ -800,7 +800,7 @@ impl<H: HttpSend> MastodonUnauth<H> {
     }
 
     fn send(&self, req: RequestBuilder) -> Result<Response> {
-        Ok(self.http_sender.send(&self.client, req)?)
+        self.http_sender.send(&self.client, req)
     }
 }
 

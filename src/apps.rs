@@ -123,7 +123,7 @@ impl<'a> AppBuilder<'a> {
                 .redirect_uris
                 .unwrap_or_else(|| "urn:ietf:wg:oauth:2.0:oob".into())
                 .into(),
-            scopes: self.scopes.unwrap_or_else(|| Scopes::read_all()),
+            scopes: self.scopes.unwrap_or_else(Scopes::read_all),
             website: self.website.map(|s| s.into()),
         })
     }
@@ -141,7 +141,7 @@ impl<'a> TryInto<App> for AppBuilder<'a> {
     type Err = Error;
 
     fn try_into(self) -> Result<App> {
-        Ok(self.build()?)
+        self.build()
     }
 }
 

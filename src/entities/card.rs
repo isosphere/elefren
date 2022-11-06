@@ -1,7 +1,7 @@
 //! Module representing cards of statuses.
 
 /// A card of a status.
-#[derive(Debug, Clone, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, PartialEq, Eq)]
 pub struct Card {
     /// The url associated with the card.
     pub url: String,

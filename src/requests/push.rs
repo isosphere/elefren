@@ -11,7 +11,7 @@ use errors::Result;
 ///
 /// let keys = Keys::new("anetohias===", "oeatssah=");
 /// ```
-#[derive(Debug, Default, Clone, PartialEq)]
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct Keys {
     pub(crate) p256dh: String,
     pub(crate) auth: String,
@@ -63,7 +63,7 @@ impl Keys {
 /// #   Ok(())
 /// # }
 /// ```
-#[derive(Debug, Default, Clone, PartialEq)]
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct AddPushRequest {
     endpoint: String,
 
@@ -236,7 +236,7 @@ impl AddPushRequest {
 /// #   Ok(())
 /// # }
 /// ```
-#[derive(Debug, Default, Clone, PartialEq, Serialize)]
+#[derive(Debug, Default, Clone, PartialEq, Eq, Serialize)]
 pub struct UpdatePushRequest {
     id: String,
     follow: Option<bool>,

@@ -10,7 +10,7 @@ macro_rules! methods {
 
                 deserialise(response)
             }
-         )+
+        )+
     };
 }
 
@@ -78,7 +78,7 @@ macro_rules! paged_routes {
 
                 let qs_data = Data {
                     $(
-                            $param: $param,
+                        $param: $param,
                     )*
                     _marker: ::std::marker::PhantomData,
                 };
@@ -132,7 +132,7 @@ macro_rules! route_v2 {
 
                 let url = format!(concat!("/api/v2/", $url, "?{}"), &qs);
 
-                Ok(self.get(self.route(&url))?)
+                self.get(self.route(&url))
             }
         }
 
@@ -209,7 +209,7 @@ macro_rules! route {
 
                 let url = format!(concat!("/api/v1/", $url, "?{}"), &qs);
 
-                Ok(self.get(self.route(&url))?)
+                self.get(self.route(&url))
             }
         }
 

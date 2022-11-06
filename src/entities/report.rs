@@ -1,7 +1,7 @@
 //! module containing information about a finished report of a user.
 
 /// A struct containing info about a report.
-#[derive(Debug, Clone, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, PartialEq, Eq)]
 pub struct Report {
     /// The ID of the report.
     pub id: String,
